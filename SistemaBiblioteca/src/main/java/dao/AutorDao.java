@@ -14,7 +14,7 @@ public class AutorDao implements IAutor {
 
     @Override
     public Autor guardar(Autor entities) {
-        if(entities.getId()==null){
+        if(entities.getId() == 0){
             em.getTransaction().begin();
             em.persist(entities);
             em.getTransaction().commit();
@@ -25,6 +25,7 @@ public class AutorDao implements IAutor {
 
     @Override
     public List<Autor> listar() {
-        return em.createQuery("from Autor", Autor.class).getResultList();
+        List<Autor> lista = em.createQuery("from Autor", Autor.class).getResultList();
+        return lista;
     }
 }

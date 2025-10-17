@@ -2,6 +2,9 @@ package dao;
 
 import entities.Libro;
 import interfac.ILibro;
+import jakarta.persistence.EntityManager;
+
+import java.util.List;
 
 public class LibroDao implements ILibro {
     private final EntityManager em;
@@ -12,7 +15,7 @@ public class LibroDao implements ILibro {
 
     @Override
     public Libro guardar(Libro entities) {
-        if(entities.getId()==null){
+        if(entities.getId()==0){
             em.getTransaction().begin();
             em.persist(entities);
             em.getTransaction().commit();
@@ -23,6 +26,7 @@ public class LibroDao implements ILibro {
 
     @Override
     public List<Libro> listar() {
-        return em.createQuery("from Libro", Libro.class).getResultList();
+        List<Libro> lista = em.createQuery("from Libro", Libro.class).getResultList();
+        return lista;
     }
 }

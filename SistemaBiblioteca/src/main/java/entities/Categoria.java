@@ -21,4 +21,12 @@ public class Categoria {
     @ManyToMany(mappedBy = "categorias")
     private List<Libro> libros;
 
+    @Override
+    public String toString() {
+        return "Categoria{" +
+                "id=" + id +
+                ", nombre='" + nombre + '\'' +
+                ", libros=" + libros +
+                '}';
+    }
 }
